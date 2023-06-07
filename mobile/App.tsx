@@ -1,11 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import { ImageBackground } from 'react-native';
+
+import {useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
+import { BaiJamjuree_700Bold } from '@expo-google-fonts/bai-jamjuree';
+import blurBg from './src/assets/bg-blur.png';
 
 export default function App() {
+  const [hasLoadedFonts] = useFonts({
+    Roboto_400Regular, 
+    Roboto_700Bold,
+    BaiJamjuree_700Bold
+  })
+    
+  //exibe telas apenas quando as fontes foram carregadas
+  if(!hasLoadedFonts) {
+    return null;
+  }
+
   return (
-    <View className="flex-1 items-center justify-center bg-gray-950" >
-      <Text className='text-gray-50 font-bold text-5xl' >Hello World!</Text>
+    <ImageBackground source={blurBg} imageStyle={{position: 'absolute', left:'-100%'}} className="flex-1 items-center relative bg-gray-900" >
+      
       <StatusBar style="light" translucent />
-    </View>
+    </ImageBackground>
   );
 }
