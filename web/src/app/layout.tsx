@@ -10,9 +10,9 @@ export const metadata = {
   description: 'Uma cápsula do tempo construída com React, Next.js, Tailwind e Typescript',
 }
  
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {   
   return (
-    <html lang="en">  
+    <html lang="pt-br">   
       <body className={`${roboto.variable} ${baijamjuree.variable} font-sans bg-gray-900 text-gray-100`}>{children}</body>
     </html>
   )
