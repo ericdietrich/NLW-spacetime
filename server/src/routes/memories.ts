@@ -3,9 +3,14 @@ import { prisma } from '../lib/prisma'
 import { z } from 'zod'
 
 export async function memoriesRoutes(app: FastifyInstance) {
-  app.get('/memories', async () => {
+  app.get('/memories', async (request) => {
+    await request.jwtVerify() // vefica se o usuário possui o token, se não possuir o restante desse get não é executado, pois é travado no await
+
     const memories = await prisma.memory.findMany({
       orderBy: { createdAt: 'asc' },
+      where: {
+        userId: request.user.sub,
+      },
     })
     return memories.map((memory) => {
       return {
