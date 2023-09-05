@@ -8,12 +8,13 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  githubId  Int      @unique
+  id        String @id @default(uuid())
+  githubId  Int    @unique
   name      String
   login     String
   avatarUrl String
-  memories  Memory[]
+
+  memories Memory[]
 }
 
 model Memory {
@@ -24,5 +25,6 @@ model Memory {
   content   String
   isPublic  Boolean  @default(false)
   createdAt DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id])
+
+  user User @relation(fields: [userId], references: [id])
 }
